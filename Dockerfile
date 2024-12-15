@@ -5,9 +5,11 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && echo "Asia/Seoul" >
 WORKDIR /src
 
 COPY package.json package-lock.json ./
-RUN npm i
+RUN npm ci
 
 COPY . .
+
+RUN npm run build
 
 EXPOSE 5173
 
