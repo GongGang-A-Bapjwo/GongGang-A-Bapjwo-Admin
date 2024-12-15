@@ -8,7 +8,7 @@
 			const accessToken = localStorage.getItem('accessToken');
 
 			if (!accessToken) {
-				goto('/login');
+				return goto('/login');
 			}
 			goto('/dashboard');
 		}
