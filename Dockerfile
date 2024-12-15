@@ -5,10 +5,10 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && echo "Asia/Seoul" >
 WORKDIR /src
 
 COPY package.json package-lock.json ./
-RUN npm ci --only=production
+RUN npm i
 
 COPY . .
 
 EXPOSE 5173
 
-CMD [ "npm", "run", "preview" ]
+CMD [ "npm", "run", "dev" ]
