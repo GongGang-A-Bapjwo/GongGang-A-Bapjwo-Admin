@@ -1,0 +1,60 @@
+name: 공강아 밥줘 관리자 페이지 CI/CD Workflows
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_ACCESS_TOKEN}}
+
+      - name: Docker Image Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{secrets.DOCKER_USERNAME}}/gonggangadmin:latest
+
+      - name: Docker Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.HOST}}
+          username: ubuntu
+          key: ${{secrets.PEM_KEY}}
+          script: |
+            sudo docker pull ${{secrets.DOCKER_USERNAME}}/gonggangadmin:latest
+            
+            EXISTING_CONTAINER_ID=$(sudo docker ps -q -f "name=gonggangadmin")
+            if [ ! -z "$EXISTING_CONTAINER_ID" ]; then
+              sudo docker stop $EXISTING_CONTAINER_ID
+              sudo docker rm $EXISTING_CONTAINER_ID
+            fi
+
+            sudo docker container prune -f
+            
+            sudo docker run -d --name gonggangadmin -p 5173:5173 \
+                ${{secrets.DOCKER_USERNAME}}/gonggangadmin:latest
+            
+            sudo docker image prune -a -f
