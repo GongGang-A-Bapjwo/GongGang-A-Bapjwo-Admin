@@ -2,7 +2,7 @@
 	let username = '';
 	let password = '';
 	let loginError = '';
-	let isLoading = false; // State to track loading
+	let isLoading = false;
 
 	import TextInput from '$lib/components/Textinput.svelte';
 	import PasswordInput from '$lib/components/PasswordInput.svelte';
@@ -14,7 +14,7 @@
 
 	async function handleLogin(event: SubmitEvent) {
 		event.preventDefault();
-		isLoading = true; // Set loading state to true
+		isLoading = true;
 
 		try {
 			loginError = '';
@@ -28,7 +28,7 @@
 			console.error('로그인 실패', error);
 			loginError = '아이디 또는 비밀번호가 올바르지 않습니다.';
 		} finally {
-			isLoading = false; // Reset loading state
+			isLoading = false;
 		}
 	}
 </script>
