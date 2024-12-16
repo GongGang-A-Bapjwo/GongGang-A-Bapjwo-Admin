@@ -4,6 +4,7 @@
 
 	import LogoutButton from '$lib/components/LogoutButton.svelte';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores'; // Import SvelteKit's $page store
 
 	import logo from '$lib/assets/gonggang.png';
 
@@ -22,6 +23,14 @@
 		<h2 class="text-lg font-bold">{title}</h2>
 	</div>
 	<div class="flex items-center gap-8">
+		<p class="text-[#0e121b] text-m font-medium">
+			{#if $page.url.pathname.startsWith('/dashboard')}
+				<a href="/appointment">채팅방 관리하기</a>
+			{:else if $page.url.pathname.startsWith('/appointment')}
+				<a href="/dashboard">사용자 관리하기</a>
+			{/if}
+		</p>
+		<p class="text-[#0e121b] text-m font-bold">|</p>
 		<p class="text-[#0e121b] text-m font-medium">{nickname} 관리자님</p>
 		<LogoutButton onLogout={handleLogout} />
 	</div>

@@ -10,3 +10,15 @@ export const deleteMember = async (email: string): Promise<void> => {
 		throw error;
 	}
 };
+
+
+export const deleteAppointment = async (boardId: bigint): Promise<void> => {
+    try {
+        const response = await apiClient.delete(`/${boardId}`);
+        console.log(`${boardId} 채팅방 삭제 완료`);
+        return response.data;
+    } catch (error) {
+        console.error('채팅방을 삭제하는데 실패했습니다:', error);
+        throw error;
+    }
+};
