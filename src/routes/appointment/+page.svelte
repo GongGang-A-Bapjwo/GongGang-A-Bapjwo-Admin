@@ -8,6 +8,7 @@
 
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 
 	let nickname: string | null = '';
 	let appointments: AppointmentResponse[] = [];
@@ -28,6 +29,12 @@
 	};
 
 	onMount(async () => {
+		const accessToken = localStorage.getItem('accessToken');
+
+		if (!accessToken) {
+			return goto('/login');
+		}
+
 		appointments = await getAppointments();
 	});
 </script>
