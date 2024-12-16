@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Table from '$lib/components/Table.svelte';
+	import Table from '$lib/components/member/Table.svelte';
 	import SearchInput from '$lib/components/SearchInput.svelte';
 	import type { DashboardResponse } from '$lib/dtos/dashboardResponse';
 
@@ -16,7 +16,7 @@
 <div>
 	<main class="px-6 items-center">
 		<div class="flex h-[72px] items-center flex-shrink-0">
-			<SearchInput bind:value={searchQuery} />
+			<SearchInput bind:value={searchQuery} placeholder="사용자 이름을 입력해주세요."/>
 		</div>
 		<Table members={filteredMembers} onBan={onBan}/>
 	</main>

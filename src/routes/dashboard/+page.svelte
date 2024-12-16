@@ -2,7 +2,7 @@
 	import type { DashboardResponse } from '$lib/dtos/dashboardResponse';
 
 	import Header from '$lib/components/Header.svelte';
-	import Dashboard from '$lib/components/Dashboard.svelte';
+	import Dashboard from '$lib/components/member/Dashboard.svelte';
 	import { getMember } from '$lib/apis/dashboardAPI';
 	import { deleteMember } from '$lib/apis/banAPI';
 
