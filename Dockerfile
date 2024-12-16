@@ -1,4 +1,4 @@
-FROM node:21-alpine
+FROM node:22-alpine
 
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && echo "Asia/Seoul" > /etc/timezone
 
