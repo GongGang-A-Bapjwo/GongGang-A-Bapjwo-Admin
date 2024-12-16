@@ -2,7 +2,7 @@ import axios from 'axios';
 import { redirect } from '@sveltejs/kit';
 
 const apiClient = axios.create({
-	baseURL: 'http://129.154.55.198/api',
+	baseURL: 'http://129.154.55.198/api/admin',
 	headers: {
 		'Content-Type': 'application/json',
 		Accept: '*/*',
@@ -12,7 +12,7 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use((config) => {
 	const token = localStorage.getItem('accessToken');
 
-	if (!token && config.url !== '/admin/login') {
+	if (!token && config.url !== '/login') {
 		localStorage.removeItem('nickname');
 		redirect(302, '/login');
 	}

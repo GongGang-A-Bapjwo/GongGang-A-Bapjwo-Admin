@@ -3,7 +3,7 @@ import type { DashboardResponse } from '$lib/dtos/dashboardResponse';
 
 export const getMember = async (): Promise<DashboardResponse[]> => {
 	try {
-		const response = await apiClient.get<DashboardResponse[]>('/admin/member/all', {
+		const response = await apiClient.get<DashboardResponse[]>('/member/all', {
 		});
 		return response.data;
 	} catch (error) {

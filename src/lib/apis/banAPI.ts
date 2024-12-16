@@ -2,7 +2,7 @@ import apiClient from './apiClient';
 
 export const deleteMember = async (email: string): Promise<void> => {
 	try {
-		const response = await apiClient.delete(`/admin/user/${email}`);
+		const response = await apiClient.delete(`/user/${email}`);
 		console.log(`${email} 사용자 추방 완료`);
 		return response.data;
 	} catch (error) {
