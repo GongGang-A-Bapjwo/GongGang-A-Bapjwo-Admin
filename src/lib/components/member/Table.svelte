@@ -22,26 +22,26 @@
 </script>
 
 <div
-	class="flex items-start self-stretch bg-[#FCFAF7] border border-[#E8DECF] rounded-[12px] px-4"
+	class="flex self-stretch bg-[#FCFAF7] border border-[#E8DECF] rounded-[12px] px-4"
 >
-	<table class="flex-1 w-full">
+	<table class="table-fixed flex-1">
 		<thead>
 		<tr class="bg-[#FCFAF7]">
-			<th class="w-[170px] text-left px-4 py-3 text-base font-bold">닉네임</th>
-			<th class="text-left px-4 py-3 text-base font-bold">이메일</th>
-			<th class="w-[170px] text-left px-4 py-3 text-base font-bold">누적 신고 수</th>
-			<th class="w-[170px] text-right px-4 py-3 text-base font-bold">관리하기</th>
+			<th class="w-[135px] text-center px-4 py-3 font-bold">닉네임</th>
+			<th class="w-[383px] text-center px-4 py-3 font-bold">이메일</th>
+			<th class="w-[200px] text-center px-4 py-3 font-bold">누적 신고 수</th>
+			<th class="w-[160px] text-center px-4 py-3 font-bold">관리하기</th>
 		</tr>
 		</thead>
 		<tbody>
 		{#each members as member}
-			<tr class="border-t border-[#d0d7e7] h-[50px]">
-				<td class="px-4 py-2">{member.name}</td>
-				<td class="px-4 py-2">{member.email}</td>
-				<td class="px-4 py-2">0회</td>
-				<td class="px-4 py-2 text-right">
+			<tr class="border-t border-[#E8DECF] h-[50px]">
+				<td class="text-center px-4 py-2">{member.name}</td>
+				<td class="text-center px-4 py-2">{member.email}</td>
+				<td class="text-center px-4 py-2">0회</td>
+				<td class="text-center px-4 py-2">
 					<button
-						class="text-[#907f51] text-sm font-bold"
+						class="text-white text-sm font-bold px-4 py-2 bg-[#6B4F27] rounded-md hover:bg-[#907f51] focus:outline-none focus:ring-2 focus:ring-[#6B4F27]"
 						on:click={() => handleBan(member)}
 					>
 						추방하기
